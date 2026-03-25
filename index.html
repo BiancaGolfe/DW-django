@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste API</title>
+</head>
+<body>
+
+<h1>Estudantes</h1>
+<ul id="lista"></ul>
+
+<script>
+fetch("http://127.0.0.1:8000/api/v1/estudantes/")
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+
+        const lista = document.getElementById("lista");
+
+        data.results.forEach(estudante => {
+            const li = document.createElement("li");
+            li.textContent = estudante.nome;
+            lista.appendChild(li);
+        });
+    })
+    .catch(error => console.error(error));
+</script>
+
+</body>
+</html>
